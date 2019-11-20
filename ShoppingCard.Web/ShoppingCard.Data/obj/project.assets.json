@@ -4874,11 +4874,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\ShoppingCard.Web\\ShoppingCard.Data\\ShoppingCard.Data.csproj",
+      "projectUniqueName": "D:\\Inexis\\ShoppingCard\\ShoppingCard.Web\\ShoppingCard.Data\\ShoppingCard.Data.csproj",
       "projectName": "ShoppingCard.Data",
-      "projectPath": "D:\\Project\\ShoppingCard.Web\\ShoppingCard.Data\\ShoppingCard.Data.csproj",
+      "projectPath": "D:\\Inexis\\ShoppingCard\\ShoppingCard.Web\\ShoppingCard.Data\\ShoppingCard.Data.csproj",
       "packagesPath": "C:\\Users\\samma\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\ShoppingCard.Web\\ShoppingCard.Data\\obj\\",
+      "outputPath": "D:\\Inexis\\ShoppingCard\\ShoppingCard.Web\\ShoppingCard.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

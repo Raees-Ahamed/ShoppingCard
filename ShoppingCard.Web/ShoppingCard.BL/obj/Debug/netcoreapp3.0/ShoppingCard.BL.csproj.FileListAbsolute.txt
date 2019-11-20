@@ -9,3 +9,14 @@ D:\Project\ShoppingCard.Web\ShoppingCard.BL\obj\Debug\netcoreapp3.0\ShoppingCard
 D:\Project\ShoppingCard.Web\ShoppingCard.BL\obj\Debug\netcoreapp3.0\ShoppingCard.BL.csproj.CopyComplete
 D:\Project\ShoppingCard.Web\ShoppingCard.BL\obj\Debug\netcoreapp3.0\ShoppingCard.BL.dll
 D:\Project\ShoppingCard.Web\ShoppingCard.BL\obj\Debug\netcoreapp3.0\ShoppingCard.BL.pdb
+D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.BL\bin\Debug\netcoreapp3.0\ShoppingCard.BL.deps.json
+D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.BL\bin\Debug\netcoreapp3.0\ShoppingCard.BL.dll
+D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.BL\bin\Debug\netcoreapp3.0\ShoppingCard.BL.pdb
+D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.BL\bin\Debug\netcoreapp3.0\ShoppingCard.Data.dll
+D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.BL\bin\Debug\netcoreapp3.0\ShoppingCard.Data.pdb
+D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.BL\obj\Debug\netcoreapp3.0\ShoppingCard.BL.csprojAssemblyReference.cache
+D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.BL\obj\Debug\netcoreapp3.0\ShoppingCard.BL.AssemblyInfoInputs.cache
+D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.BL\obj\Debug\netcoreapp3.0\ShoppingCard.BL.AssemblyInfo.cs
+D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.BL\obj\Debug\netcoreapp3.0\ShoppingCard.BL.csproj.CopyComplete
+D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.BL\obj\Debug\netcoreapp3.0\ShoppingCard.BL.dll
+D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.BL\obj\Debug\netcoreapp3.0\ShoppingCard.BL.pdb

@@ -8086,11 +8086,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\ShoppingCard.Web\\ShoppingCard.Web\\ShoppingCard.Web.csproj",
+      "projectUniqueName": "D:\\Inexis\\ShoppingCard\\ShoppingCard.Web\\ShoppingCard.Web\\ShoppingCard.Web.csproj",
       "projectName": "ShoppingCard.Web",
-      "projectPath": "D:\\Project\\ShoppingCard.Web\\ShoppingCard.Web\\ShoppingCard.Web.csproj",
+      "projectPath": "D:\\Inexis\\ShoppingCard\\ShoppingCard.Web\\ShoppingCard.Web\\ShoppingCard.Web.csproj",
       "packagesPath": "C:\\Users\\samma\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\ShoppingCard.Web\\ShoppingCard.Web\\obj\\",
+      "outputPath": "D:\\Inexis\\ShoppingCard\\ShoppingCard.Web\\ShoppingCard.Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -8109,11 +8109,11 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "D:\\Project\\ShoppingCard.Web\\ShoppingCard.BL\\ShoppingCard.BL.csproj": {
-              "projectPath": "D:\\Project\\ShoppingCard.Web\\ShoppingCard.BL\\ShoppingCard.BL.csproj"
+            "D:\\Inexis\\ShoppingCard\\ShoppingCard.Web\\ShoppingCard.BL\\ShoppingCard.BL.csproj": {
+              "projectPath": "D:\\Inexis\\ShoppingCard\\ShoppingCard.Web\\ShoppingCard.BL\\ShoppingCard.BL.csproj"
             },
-            "D:\\Project\\ShoppingCard.Web\\ShoppingCard.Data\\ShoppingCard.Data.csproj": {
-              "projectPath": "D:\\Project\\ShoppingCard.Web\\ShoppingCard.Data\\ShoppingCard.Data.csproj"
+            "D:\\Inexis\\ShoppingCard\\ShoppingCard.Web\\ShoppingCard.Data\\ShoppingCard.Data.csproj": {
+              "projectPath": "D:\\Inexis\\ShoppingCard\\ShoppingCard.Web\\ShoppingCard.Data\\ShoppingCard.Data.csproj"
             }
           }
         }
