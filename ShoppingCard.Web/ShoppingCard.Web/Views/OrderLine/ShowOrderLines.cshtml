@@ -26,7 +26,7 @@
             <td>@Items.OrderId</td>
             <td><a class="btn btn-success">Edit</a></td>
             <td><a class="btn btn-danger">Delete</a></td>
-            <td><a class="btn btn-primary">Go to Order</a></td>
+            <td><a class="btn btn-primary" asp-controller="Order" asp-action="GetOrdersById" asp-route-id="@Items.OrderId" >Go to Order</a></td>
         </tr>
             }
         </table>

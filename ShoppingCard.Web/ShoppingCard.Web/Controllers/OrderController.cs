@@ -67,6 +67,12 @@ namespace ShoppingCard.Web.Controllers
             return View(modal);
         }
 
+        public IActionResult GetOrdersById(int id) {
+
+            var orderbyId = orders.GetOrdersById(id);
+            return View(orderbyId);
+        }
+
         [HttpGet]
         public IActionResult EditOrders() {
             return View();

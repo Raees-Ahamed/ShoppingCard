@@ -29,5 +29,10 @@ namespace ShoppingCard.BL.Services
             var query = db.Orders.Include(c => c.Customer).ToList();
             return query;
         }
+
+        public IEnumerable<Order> GetOrdersById(int id)
+        {
+            return from r in db.Orders where r.Id == id select r;
+        }
     }
 }

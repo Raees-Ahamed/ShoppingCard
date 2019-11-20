@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ShoppingCard.Data.Entity.Order>
+@{
+    ViewData["Title"] = "GetOrdersById";
+}
+
+<h1 align="center">Order</h1>
+<div class="container-fluid">
+    <div class="form-group">
+        <table class="table table-dark">
+            <tr class="thead-dark">
+                <th>Order Id</th>
+                <th>Order Date</th>
+                <th>Customer Id</th>
+            </tr>
+            @foreach (var orders in Model)
+            {
+            <tr>
+                <td>@orders.Id</td>
+                <td>@orders.Date</td>
+                <td>@orders.CustomerId</td>
+                <td><a class="btn btn-success">Edit Order</a></td>
+                <td><a class="btn btn-danger">Delete Order</a></td>                
+            </tr>
+            }
+        </table>
+    </div>
+</div>
+
