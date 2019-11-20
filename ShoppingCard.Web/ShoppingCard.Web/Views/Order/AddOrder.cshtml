@@ -26,7 +26,7 @@
                 <td><select onchange="LoadProduct(this.value) " id="productId" asp-items="@(new SelectList(ViewBag.listOfProducts,"Id","Name"))" class="form-control"></select></td>
                 <td><input type="text" id="description" class="form-control" disabled /></td>
                 <td><input type="text" id="unitPrice" class="form-control" disabled /></td>
-                <td><input type="number" id="qty" class="form-control" /></td>
+                <td><input type="number" id="qty" class="form-control" min="1"/></td>
                 <td><button onclick="AddItems()" class="btn btn-danger">Add To Order</button></td>
             </tr>
         </table>

@@ -10,6 +10,5 @@ namespace ShoppingCard.BL.Interfaces
         public int AddOrder(Order order);
         IEnumerable<Order> GetOrders();
         IEnumerable<Order> GetOrdersById(int id);
-
     }
 }

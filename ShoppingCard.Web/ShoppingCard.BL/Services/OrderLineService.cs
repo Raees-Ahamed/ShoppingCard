@@ -20,7 +20,6 @@ namespace ShoppingCard.BL.Services
             db.Orderitems.Add(items);
             db.SaveChanges();
         }
-
         public IEnumerable<OrderItem> GetOrderItem(int id)
         {
              var query = from r in db.Orderitems where r.OrderId == id select r;

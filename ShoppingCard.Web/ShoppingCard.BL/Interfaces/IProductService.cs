@@ -9,6 +9,5 @@ namespace ShoppingCard.BL.Interfaces
     {
         IEnumerable<Product> GetAll();
         Product GetProductById(int id);
-
     }
 }

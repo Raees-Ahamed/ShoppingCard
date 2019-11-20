@@ -77,5 +77,10 @@ namespace ShoppingCard.Web.Controllers
         public IActionResult EditOrders() {
             return View();
         }
+
+        [HttpPost]
+        public void Editorders() { 
+            
+        }
     }
 }

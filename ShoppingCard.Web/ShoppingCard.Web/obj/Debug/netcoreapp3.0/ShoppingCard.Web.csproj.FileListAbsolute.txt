@@ -322,3 +322,4 @@ D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\ShoppingCard.Web.dll
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\ShoppingCard.Web.pdb
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\Razor\Views\Order\GetOrdersById.cshtml.g.cs
+D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\Razor\Views\OrderLine\EditOrderLine.cshtml.g.cs
