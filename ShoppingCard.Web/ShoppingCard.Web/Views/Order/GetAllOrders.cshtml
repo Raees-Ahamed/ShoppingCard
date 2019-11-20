@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ShoppingCard.Data.Entity.Order>
+@{
+    ViewData["Title"] = "GetAllOrders";
+}
+
+<h1 align="center">AllOrders</h1>
+
+<div class="container-fluid">
+    <div class="form-group">
+        <table class="table table-danger">
+            <tr>
+                <th>Order Id</th>
+                <th>Customer Name</th>
+                <th>Order Date</th>
+            </tr>
+            @{
+                foreach (var orderItems in Model)
+                {
+                        <tr>
+                            <td>@orderItems.Id</td>
+                            <td>@orderItems.Customer.Fname @orderItems.Customer.Lname </td>
+                            <td>@orderItems.Date</td>
+                            <td><a class="btn btn-primary" asp-controller="OrderLine" asp-action="ShowOrderLines" asp-route-id="@orderItems.Id">View Order Items</a></td>
+                            <td><a class="btn btn-success" >Edit</a></td>
+                            <td><a class="btn btn-danger">Delete</a></td>
+                        </tr>
+                }
+            }
+        </table>
+    </div>
+</div>

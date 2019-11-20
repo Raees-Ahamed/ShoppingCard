@@ -1,0 +1,11 @@
+D:\Project\ShoppingCard.Web\ShoppingCard.BL\bin\Debug\netcoreapp3.0\ShoppingCard.BL.deps.json
+D:\Project\ShoppingCard.Web\ShoppingCard.BL\bin\Debug\netcoreapp3.0\ShoppingCard.BL.dll
+D:\Project\ShoppingCard.Web\ShoppingCard.BL\bin\Debug\netcoreapp3.0\ShoppingCard.BL.pdb
+D:\Project\ShoppingCard.Web\ShoppingCard.BL\bin\Debug\netcoreapp3.0\ShoppingCard.Data.dll
+D:\Project\ShoppingCard.Web\ShoppingCard.BL\bin\Debug\netcoreapp3.0\ShoppingCard.Data.pdb
+D:\Project\ShoppingCard.Web\ShoppingCard.BL\obj\Debug\netcoreapp3.0\ShoppingCard.BL.csprojAssemblyReference.cache
+D:\Project\ShoppingCard.Web\ShoppingCard.BL\obj\Debug\netcoreapp3.0\ShoppingCard.BL.AssemblyInfoInputs.cache
+D:\Project\ShoppingCard.Web\ShoppingCard.BL\obj\Debug\netcoreapp3.0\ShoppingCard.BL.AssemblyInfo.cs
+D:\Project\ShoppingCard.Web\ShoppingCard.BL\obj\Debug\netcoreapp3.0\ShoppingCard.BL.csproj.CopyComplete
+D:\Project\ShoppingCard.Web\ShoppingCard.BL\obj\Debug\netcoreapp3.0\ShoppingCard.BL.dll
+D:\Project\ShoppingCard.Web\ShoppingCard.BL\obj\Debug\netcoreapp3.0\ShoppingCard.BL.pdb

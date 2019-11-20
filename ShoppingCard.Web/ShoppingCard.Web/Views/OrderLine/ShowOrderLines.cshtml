@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ShoppingCard.Data.Entity.OrderItem>
+@{
+    ViewData["Title"] = "ShowOrderLines";
+}
+
+<h1 align="center">Ordered Items</h1>
+@*public int Id { get; set; }
+        public int ProductId { get; set; }
+        public double UnitPrice { get; set; }
+        public int Quantity { get; set; }
+        public int OrderId { get; set; }*@
+
+
+<div class="container-fluid">
+    <div class="form-group">
+        <table class="table table-dark">
+            <tr class="thead-dark">
+                <th>Order Line Id</th>
+                <th>Product Id</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Order Id</th>
+            </tr>
+
+            @foreach(var Items in Model)
+            {
+        <tr>
+            <td>@Items.Id</td>
+            <td>@Items.ProductId</td>
+            <td>@Items.Price</td>
+            <td>@Items.Qty</td>
+            <td>@Items.OrderId</td>
+            <td><a class="btn btn-success">Edit</a></td>
+            <td><a class="btn btn-danger">Delete</a></td>
+            <td><a class="btn btn-primary">Go to Order</a></td>
+        </tr>
+            }
+        </table>
+    </div>
+</div>
+
+
+
