@@ -4,27 +4,51 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ShoppingCard.BL.Interfaces;
+using ShoppingCard.Data.Entity;
+using ShoppingCard.Web.Models;
 
 namespace ShoppingCard.Web.Controllers
 {
     public class OrderLineController : Controller
     {
         private readonly IOrderLineService orderLines;
+        private readonly IProductService products;
 
-        public OrderLineController(IOrderLineService orderLines)
+        public OrderLineController(IOrderLineService orderLines,IProductService products)
         {
             this.orderLines = orderLines;
+            this.products = products;
         }
 
 
-        public IActionResult ShowOrderLines(int id)
+        public IActionResult ShowOrderLines()
         {
-            var lines = orderLines.GetOrderItem(id);
-            return View(lines);
+            var lines = orderLines.GetOrderItems();
+            return View(lines); 
         }
 
-        public IActionResult EditOrderLine() {
-            return View();
+        [HttpGet]
+        public IActionResult EditOrderLine(int id) {
+
+            var orderItem = orderLines.GetOrderItemById(id);
+            ViewBag.AllProduct = products.GetAll().ToList();
+            return View(orderItem);
+        }
+
+        [HttpPost]
+        public IActionResult EditOrderLine([FromBody] OrderLineViewModel OrderLines ) 
+        {
+            var lines = new OrderItem()
+            {
+                Id = OrderLines.Id,
+                ProductId = OrderLines.ProductId,
+                Qty = OrderLines.Quantity,
+                Price = Convert.ToInt32(OrderLines.UnitPrice),
+                OrderId = OrderLines.OrderId
+            };
+
+            orderLines.Edit(lines);
+            return RedirectToPage("ShowOrderLines");
         }
     }
 }

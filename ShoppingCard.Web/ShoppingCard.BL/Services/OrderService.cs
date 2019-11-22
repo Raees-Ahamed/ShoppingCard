@@ -19,20 +19,60 @@ namespace ShoppingCard.BL.Services
         }
         public int AddOrder(Order order)
         {
-            db.Orders.Add(order);
-            db.SaveChanges();
-            return order.Id;
+            try
+            {
+                db.Orders.Add(order);
+                db.SaveChanges();
+                return order.Id;
+            }
+            catch (Exception ex)
+            {
+
+                throw new System.Exception(ex.Message);
+            }
+           
         }
 
         public IEnumerable<Order> GetOrders()
         {
-            var query = db.Orders.Include(c => c.Customer).ToList();
-            return query;
+            try
+            {
+                var query = db.Orders.Include(c => c.Customer).ToList();
+                return query;
+            }
+            catch (Exception ex)
+            {
+                throw new System.Exception(ex.Message);
+            }
+           
         }
 
         public IEnumerable<Order> GetOrdersById(int id)
         {
-            return from r in db.Orders where r.Id == id select r;
+            try
+            {
+                return from r in db.Orders where r.Id == id select r;
+            }
+            catch (Exception ex)
+            {
+
+                throw new System.Exception(ex.Message);
+            }
+        }
+
+        public IEnumerable<Order> GetOrdersByIdEdit(int id)
+        {
+            try
+            {
+                var query = db.Orders.Include(c => c.Customer).Where(o => o.CustomerId == id);
+                return query;
+            }
+            catch (Exception ex)
+            {
+
+                throw new System.Exception(ex.Message);
+            }
+            
         }
     }
 }

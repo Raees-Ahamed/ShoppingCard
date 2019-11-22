@@ -17,13 +17,60 @@ namespace ShoppingCard.BL.Services
         }
         public void AddOrderItems(OrderItem items)
         {
-            db.Orderitems.Add(items);
-            db.SaveChanges();
+            try
+            {
+                db.Orderitems.Add(items);
+                db.SaveChanges();
+            }
+            catch (System.Exception ex)
+            {
+
+                throw new System.Exception(ex.Message);
+            }
+           
         }
-        public IEnumerable<OrderItem> GetOrderItem(int id)
+
+        public void Edit(OrderItem EditedItems)
         {
-             var query = from r in db.Orderitems where r.OrderId == id select r;
-            return query;
+            try
+            {
+                db.Orderitems.Update(EditedItems);
+                db.SaveChanges();
+            }
+            catch (System.Exception ex)
+            {
+
+                throw new System.Exception(ex.Message);
+            }
+        }
+
+        public OrderItem GetOrderItemById(int id)
+        {
+            try
+            {
+                //var result = from r in db.Orderitems where r.Id == id select r;
+                var result = db.Orderitems.FirstOrDefault(r => r.Id == id);
+                return result;
+            }
+            catch (System.Exception ex)
+            {
+
+                throw new System.Exception(ex.Message);
+            }
+          
+        }
+
+        public List<OrderItem> GetOrderItems()
+        {
+            try
+            {
+                return db.Orderitems.ToList();
+            }
+            catch (System.Exception ex)
+            {
+
+                throw new System.Exception(ex.Message);
+            }
         }
     }
 }

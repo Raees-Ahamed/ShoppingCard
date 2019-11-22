@@ -1,8 +1,11 @@
 ﻿
+
 var productName;
 var description;
 var unitPrice;
 var qty;
+
+//Add Order Line Items to the table
 function AddItems() {
     var table = document.getElementById("orderTable");
      productName = document.getElementById("productId").value;
@@ -61,6 +64,7 @@ function AddItems() {
     AddOrderLine();
 }
 
+//Create OrderLine
 
 var products = [];
 var orderLine;
@@ -86,7 +90,7 @@ function AddOrderLine() {
 
     
 }
-
+//AddOrder
 function confirmOrder() {
     var http = new XMLHttpRequest();
 
@@ -106,6 +110,31 @@ function confirmOrder() {
 
     http.open("POST", "../Order/Addorder", true);
     http.setRequestHeader("Content-Type", "application/json");
-    http.send(JSON.stringify(orders));
+    http.send(JSON.stringify(orders));1
     location.replace("../Order/GetAllOrders");
+}
+//Edit Order
+function EditOrder() {
+    var http2 = new XMLHttpRequest();
+
+    var orderLineId = document.getElementById("orderLineId").value;
+    var productId = document.getElementById("productId").value;
+    var price = document.getElementById("price").value;
+    var quantity = document.getElementById("quantity").value;
+    var orderId = document.getElementById("orderId").value;
+
+    var orderLine = {
+        Id: parseInt(orderLineId),
+        ProductId: parseInt(productId),
+        UnitPrice: parseInt(price),
+        Quantity: parseInt(quantity),
+        OrderId: parseInt(orderId)
+    };
+
+    console.log(orderLine);
+
+    http2.open("POST","../EditOrderLine", true);
+    http2.setRequestHeader("Content-Type","application/json");
+    http2.send(JSON.stringify(orderLine));
+    alert("Updated Successfully");
 }

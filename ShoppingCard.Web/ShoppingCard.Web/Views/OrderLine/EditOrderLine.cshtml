@@ -1,37 +1,29 @@
-﻿
+﻿@model ShoppingCard.Data.Entity.OrderItem
 @{
     ViewData["Title"] = "EditOrderLine";
 }
-
-@*public int Id { get; set; }
-
-        public int Qty { get; set; }
-        public int Price { get; set; }
-
-        public int ProductId { get; set; }
-        [ForeignKey("ProductId")]
-        public Product Product { get; set; }
-
-        public int OrderId { get; set; }
-        [ForeignKey("OrderId")]
-        public virtual Order Orders { get; set; }*@
-
 <h1>EditOrderLine</h1>
 <div class="container-fluid">
     <div class="form-group">
-        <form method="post">
-            <label>Order Line Id   :</label>
-            <input type="text" name="name" value="" class="form-control" disabled /><br />
-            <label>Product Name  :</label>
-            <input type="text" name="name" value="" class="form-control" /><br />
-            <label>Quantity  :</label>
-            <input type="number" name="name" value="" class="form-control" /><br />
-            <label>Price   :</label>
-            <input type="text" name="name" value="" class="form-control" disabled /><br />
-            <label>Order Id  :</label>
-            <input type="text" name="name" value="" class="form-control" disabled/><br />
+        
+            
+                <label>Order Line Id   :</label>
+                <input type="text" name="name" value="@Model.Id" id="orderLineId"class="form-control" disabled /><br />
+                <label>Product Name  :</label>
+                @*<input type="text" name="name" value="@Model.Product.Id" class="form-control" /><br />*@
+                <select asp-items="@(new SelectList(@ViewBag.AllProduct,"Id","Name"))" id="productId" class="form-control">
+                    <option>@Model.Product.Name</option>
+                </select>
+                <label>Quantity  :</label>
+                <input type="number" name="name" value="@Model.Qty" id="quantity" class="form-control" /><br />
+                <label>Price   :</label>
+                <input type="text" name="name" value="@Model.Price" id="price" class="form-control" disabled /><br />
+                <label>Order Id  :</label>
+                <input type="text" name="name" value="@Model.OrderId" id="orderId" class="form-control" disabled/><br />
+         
             <br />
-            <input type="submit" class="btn btn-success" value="Edit" />
-        </form>
+            <button onclick="EditOrder()" class="btn btn-success">Edit</button>
+       
     </div>
 </div>
+<script src="~/JavaScript/Order.js"></script>

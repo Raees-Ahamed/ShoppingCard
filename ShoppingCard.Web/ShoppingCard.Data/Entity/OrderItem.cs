@@ -10,6 +10,7 @@ namespace ShoppingCard.Data.Entity
         public int Id { get; set; }
 
         public int Qty { get; set; }
+
         public int Price { get; set; }
 
         public int ProductId { get; set; }
@@ -19,6 +20,5 @@ namespace ShoppingCard.Data.Entity
         public int OrderId { get; set; }
         [ForeignKey("OrderId")]
         public virtual Order Orders { get; set; }
-
     }
 }

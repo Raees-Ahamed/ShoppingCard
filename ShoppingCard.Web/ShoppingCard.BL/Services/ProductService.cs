@@ -17,12 +17,29 @@ namespace ShoppingCard.BL.Services
         }
         public IEnumerable<Product> GetAll()
         {
-            return from r in db.Products orderby r.Id select r;
+            try
+            {
+                return from r in db.Products orderby r.Id select r;
+            }
+            catch (System.Exception ex)
+            {
+
+                throw new System.Exception(ex.Message);
+            }
+           
         }
 
         public Product GetProductById(int id)
         {
-            return db.Products.Find(id);
+            try
+            {
+                return db.Products.Find(id);
+            }
+            catch (System.Exception ex)
+            {
+
+                throw new System.Exception(ex.Message);
+            }
         }
     }
 }

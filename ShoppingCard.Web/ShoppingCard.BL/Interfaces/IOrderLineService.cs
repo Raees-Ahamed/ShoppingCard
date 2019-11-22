@@ -8,6 +8,9 @@ namespace ShoppingCard.BL.Interfaces
     public interface IOrderLineService
     {
         public void AddOrderItems(OrderItem items);
-        public IEnumerable<OrderItem> GetOrderItem(int id);
+        public OrderItem GetOrderItemById(int id);
+        public List<OrderItem> GetOrderItems();
+        public void Edit(OrderItem EditedItems);
+      
     }
 }

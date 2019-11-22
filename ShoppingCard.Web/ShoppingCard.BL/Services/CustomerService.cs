@@ -16,10 +16,16 @@ namespace ShoppingCard.BL.Services
             this.db = db;
         }
 
-
         public IEnumerable<Customer> GetAll()
         {
-            return from r in db.Customers orderby r.Id select r;
+            try
+            {
+                return from r in db.Customers orderby r.Id select r;
+            }
+            catch (System.Exception ex)
+            {
+                throw new System.Exception(ex.Message);
+            }
         }
     }
 }

@@ -13,7 +13,5 @@ namespace ShoppingCard.Data.Entity
 
         [ForeignKey("CustomerId")]
         public Customer Customer { get; set; }
-
-
     }
 }

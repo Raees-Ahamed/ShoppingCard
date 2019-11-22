@@ -2,8 +2,12 @@
 @{
     ViewData["Title"] = "GetAllOrders";
 }
-
 <h1 align="center">AllOrders</h1>
+<div class="container-fluid">
+    <div class="form-group">
+        <a class="btn btn-outline-primary" asp-controller="Order" asp-action="AddOrder">Add New Order</a>
+    </div>
+</div>
 
 <div class="container-fluid">
     <div class="form-group">
@@ -14,14 +18,13 @@
                 <th>Order Date</th>
             </tr>
             @{
-                foreach (var orderItems in Model)
+                foreach(var orderItems in Model)
                 {
                         <tr>
                             <td>@orderItems.Id</td>
-                            <td>@orderItems.Customer.Fname @orderItems.Customer.Lname </td>
+                            <td>@orderItems.Customer.Fname @orderItems.Customer.Lname</td>
                             <td>@orderItems.Date</td>
                             <td><a class="btn btn-primary" asp-controller="OrderLine" asp-action="ShowOrderLines" asp-route-id="@orderItems.Id">View Order Items</a></td>
-                            <td><a class="btn btn-success" asp-controller="Order" asp-action="EditOrders" >Edit</a></td>
                             <td><a class="btn btn-danger">Delete</a></td>
                         </tr>
                 }
