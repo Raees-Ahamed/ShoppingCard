@@ -50,5 +50,10 @@ namespace ShoppingCard.Web.Controllers
             orderLines.Edit(lines);
             return RedirectToPage("ShowOrderLines");
         }
+
+        public IActionResult DeleteOrderLine(int id) {
+            orderLines.DeleteOrderLine(id);
+            return RedirectToAction("ShowOrderLines","OrderLine");
+        }
     }
 }

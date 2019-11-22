@@ -11,6 +11,6 @@ namespace ShoppingCard.BL.Interfaces
         public OrderItem GetOrderItemById(int id);
         public List<OrderItem> GetOrderItems();
         public void Edit(OrderItem EditedItems);
-      
+        public void DeleteOrderLine(int id);      
     }
 }

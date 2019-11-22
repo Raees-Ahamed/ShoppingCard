@@ -11,5 +11,6 @@ namespace ShoppingCard.BL.Interfaces
         IEnumerable<Order> GetOrders();
         IEnumerable<Order> GetOrdersById(int id);
         IEnumerable<Order> GetOrdersByIdEdit(int id);
+        public void DeleteOrder(int Id);
     }
 }

@@ -30,6 +30,13 @@ namespace ShoppingCard.BL.Services
            
         }
 
+        public void DeleteOrderLine(int id)
+        {
+            var orderline= db.Orderitems.Find(id);
+            db.Orderitems.Remove(orderline);
+            db.SaveChanges();
+        }
+
         public void Edit(OrderItem EditedItems)
         {
             try
@@ -39,7 +46,6 @@ namespace ShoppingCard.BL.Services
             }
             catch (System.Exception ex)
             {
-
                 throw new System.Exception(ex.Message);
             }
         }
@@ -48,16 +54,13 @@ namespace ShoppingCard.BL.Services
         {
             try
             {
-                //var result = from r in db.Orderitems where r.Id == id select r;
                 var result = db.Orderitems.FirstOrDefault(r => r.Id == id);
                 return result;
             }
             catch (System.Exception ex)
             {
-
                 throw new System.Exception(ex.Message);
             }
-          
         }
 
         public List<OrderItem> GetOrderItems()
@@ -68,7 +71,6 @@ namespace ShoppingCard.BL.Services
             }
             catch (System.Exception ex)
             {
-
                 throw new System.Exception(ex.Message);
             }
         }

@@ -28,9 +28,15 @@ namespace ShoppingCard.BL.Services
             catch (Exception ex)
             {
 
-                throw new System.Exception(ex.Message);
+                throw new Exception(ex.Message);
             }
-           
+        }
+
+        public void DeleteOrder(int id)
+        {
+            var order = db.Orders.Find(id);
+            db.Orders.Remove(order);
+            db.SaveChanges();
         }
 
         public IEnumerable<Order> GetOrders()
@@ -42,9 +48,8 @@ namespace ShoppingCard.BL.Services
             }
             catch (Exception ex)
             {
-                throw new System.Exception(ex.Message);
+                throw new Exception(ex.Message);
             }
-           
         }
 
         public IEnumerable<Order> GetOrdersById(int id)
@@ -55,8 +60,7 @@ namespace ShoppingCard.BL.Services
             }
             catch (Exception ex)
             {
-
-                throw new System.Exception(ex.Message);
+                throw new Exception(ex.Message);
             }
         }
 
@@ -69,10 +73,8 @@ namespace ShoppingCard.BL.Services
             }
             catch (Exception ex)
             {
-
-                throw new System.Exception(ex.Message);
+                throw new Exception(ex.Message);
             }
-            
         }
     }
 }
