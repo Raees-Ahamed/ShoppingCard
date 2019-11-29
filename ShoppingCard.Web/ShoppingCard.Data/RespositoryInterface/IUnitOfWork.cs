@@ -1,0 +1,18 @@
+﻿using ShoppingCard.Data.Entity;
+using ShoppingCart.Data.Repository.Respositories;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ShoppingCart.Data.Repository.RespositoryInterface
+{
+    public interface IUnitOfWork
+    {
+        GenericRepository<Customer> CustomerRepository { get; }
+        GenericRepository<Order> OrderRepository { get; }
+        GenericRepository<Product> ProductRepository { get; }
+        GenericRepository<OrderItem> OrderItemRepository { get; }
+        void Save();
+
+    }
+}

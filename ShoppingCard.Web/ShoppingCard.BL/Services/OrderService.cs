@@ -6,75 +6,94 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using ShoppingCard.BL.BO;
+using ShoppingCart.Data.Repository.RespositoryInterface;
+using AutoMapper;
 
 namespace ShoppingCard.BL.Services
 {
     public class OrderService : IOrderServices
     {
-        private readonly ShoppingCardDbContext db;
+        private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
+        private readonly ProductService productService;
 
-        public OrderService(ShoppingCardDbContext db)
+        public OrderService(IUnitOfWork unitOfWork,IMapper mapper)
         {
-            this.db = db;
-        }
-        public int AddOrder(Order order)
-        {
-            try
-            {
-                db.Orders.Add(order);
-                db.SaveChanges();
-                return order.Id;
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
+            this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
+            productService = new ProductService(unitOfWork, mapper);
         }
 
-        public void DeleteOrder(int id)
+        public int AddOrder(OrderBO orderBO)
         {
-            var order = db.Orders.Find(id);
-            db.Orders.Remove(order);
-            db.SaveChanges();
+            var order = mapper.Map<Order>(orderBO);
+            unitOfWork.OrderRepository.Create(order);
+            unitOfWork.Save();
+            return orderBO.Id;
+            
         }
 
-        public IEnumerable<Order> GetOrders()
+        public void AddOrderItems(OrderItemBO orderItemBO)
         {
-            try
-            {
-                var query = db.Orders.Include(c => c.Customer).ToList();
-                return query;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            var orderItems = mapper.Map<OrderItem>(orderItemBO);
+            unitOfWork.OrderItemRepository.Create(orderItems);
+            unitOfWork.Save();
         }
 
-        public IEnumerable<Order> GetOrdersById(int id)
+        public void DeleteOrder(int Id)
         {
-            try
-            {
-                return from r in db.Orders where r.Id == id select r;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            var orderBo = unitOfWork.OrderRepository.GetByID(Id);
+            var DeleteOrder = mapper.Map<Order>(orderBo);
+            unitOfWork.OrderRepository.Delete(DeleteOrder);
+            unitOfWork.Save();
         }
 
-        public IEnumerable<Order> GetOrdersByIdEdit(int id)
+        public void DeleteOrderLine(int id)
         {
-            try
-            {
-                var query = db.Orders.Include(c => c.Customer).Where(o => o.CustomerId == id);
-                return query;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            var orderItemBO= unitOfWork.OrderItemRepository.GetByID(id);
+            var DeleteLine = mapper.Map<OrderItem>(orderItemBO);
+            unitOfWork.OrderItemRepository.Delete(DeleteLine);
+            unitOfWork.Save();
         }
+
+        public void Edit(OrderItemBO EditedItems)
+        {
+            var OrderItemEdit = mapper.Map<OrderItem>(EditedItems);
+            unitOfWork.OrderItemRepository.Update(OrderItemEdit);
+            unitOfWork.Save();
+        }
+
+        public OrderItemBO GetEditItems(int id)
+        {
+            var OrderItems = unitOfWork.OrderItemRepository.GetByID(id);
+            return mapper.Map<OrderItemBO>(OrderItems);
+        }
+
+        public IEnumerable<OrderItemBO> GetOrderItemById(int id)
+        {
+            var OrderItems = unitOfWork.OrderItemRepository.Get(o => o.OrderId == id, includeProperties:"Products");
+            return mapper.Map<IEnumerable<OrderItemBO>>(OrderItems);
+        }
+
+        public IEnumerable<OrderItemBO> GetOrderItems()
+        {
+            var query = unitOfWork.OrderItemRepository.Get();
+            return mapper.Map<IEnumerable<OrderItemBO>>(query);
+        }
+
+        public IEnumerable<OrderBO> GetOrders()
+        {
+            var query = unitOfWork.OrderRepository.Get().ToList();
+            return mapper.Map<IEnumerable<OrderBO>>(query);
+        }
+
+        public OrderBO GetOrdersById(int id)
+        {
+            var Orders = unitOfWork.OrderRepository.GetByID(id);
+            return mapper.Map<OrderBO>(Orders);
+        }
+
+      
     }
 }

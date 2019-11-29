@@ -15,7 +15,7 @@ namespace ShoppingCard.Data.Entity
 
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]
-        public Product Product { get; set; }
+        public Product Products { get; set; }
 
         public int OrderId { get; set; }
         [ForeignKey("OrderId")]

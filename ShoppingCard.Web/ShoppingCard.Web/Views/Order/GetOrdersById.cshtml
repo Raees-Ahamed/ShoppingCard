@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShoppingCard.Data.Entity.Order>
+﻿@model ShoppingCard.Web.Models.OrderViewModel
 @{
     ViewData["Title"] = "GetOrdersById";
 }
@@ -12,15 +12,14 @@
                 <th>Order Date</th>
                 <th>Customer Id</th>
             </tr>
-            @foreach (var orders in Model)
-            {
+           
             <tr>
-                <td>@orders.Id</td>
-                <td>@orders.Date</td>
-                <td>@orders.CustomerId</td>
+                <td>@Model.Id</td>
+                <td>@Model.Date</td>
+                <td>@Model.CustomerId</td>
                 <td><a class="btn btn-danger">Delete Order</a></td>                
             </tr>
-            }
+            
         </table>
     </div>
 </div>

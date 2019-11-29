@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +13,9 @@ using Microsoft.Extensions.Hosting;
 using ShoppingCard.BL.Interfaces;
 using ShoppingCard.BL.Services;
 using ShoppingCard.Data.ShoppingCardContext;
+using ShoppingCard.Web.AutoMapper;
+using ShoppingCart.Data.Repository.Respositories;
+using ShoppingCart.Data.Repository.RespositoryInterface;
 
 namespace ShoppingCard.Web
 {
@@ -27,18 +31,24 @@ namespace ShoppingCard.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
-
             services.AddDbContext<ShoppingCardDbContext>(options =>{
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
-
-            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<DbContext, ShoppingCardDbContext>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IOrderServices, OrderService>();
-            services.AddScoped<IOrderLineService, OrderLineService>();
+
+            var config = new MapperConfiguration(mapperProfiler =>
+            {
+                mapperProfiler.AddProfile(new MapperConfig());
+            });
+            var mapper = config.CreateMapper();
+
+            services.AddSingleton(mapper);
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,7 +75,7 @@ namespace ShoppingCard.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Order}/{action=GetAllOrders}/{id?}");
+                    pattern: "{controller=Order}/{action=AddOrder}/{id?}");
             });
         }
     }

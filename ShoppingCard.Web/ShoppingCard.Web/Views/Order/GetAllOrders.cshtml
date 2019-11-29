@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShoppingCard.Data.Entity.Order>
+﻿@model IEnumerable<ShoppingCard.Web.Models.OrderViewModel>
 @{
     ViewData["Title"] = "GetAllOrders";
 }
@@ -22,9 +22,9 @@
                 {
                         <tr>
                             <td>@orderItems.Id</td>
-                            <td>@orderItems.Customer.Fname @orderItems.Customer.Lname</td>
+                            <td>@orderItems.CustomerId</td>
                             <td>@orderItems.Date</td>
-                            <td><a class="btn btn-primary" asp-controller="OrderLine" asp-action="ShowOrderLines" asp-route-id="@orderItems.Id">View Order Items</a></td>
+                            <td><a class="btn btn-primary" asp-controller="Order" asp-action="ShowOrderLines" asp-route-id="@orderItems.Id">View Order Items</a></td>
                             <td><a class="btn btn-danger" asp-controller="Order" asp-action="DeleteOrders" asp-route-id="@orderItems.Id">Delete</a></td>
                         </tr>
                 }

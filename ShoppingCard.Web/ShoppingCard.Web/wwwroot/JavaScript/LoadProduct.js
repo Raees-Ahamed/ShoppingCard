@@ -1,4 +1,5 @@
-﻿function LoadProduct(id) {
+﻿//Load Product to the Select List in User Interface :- Add Order
+function LoadProduct(id) {
     var http = new XMLHttpRequest();
     http.open("GET", "../product/GetProduct/" + id, true); 
     http.send();

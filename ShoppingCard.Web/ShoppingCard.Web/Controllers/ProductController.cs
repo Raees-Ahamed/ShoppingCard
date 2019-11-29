@@ -15,6 +15,8 @@ namespace ShoppingCard.Web.Controllers
         {
             this.product = product;
         }
+
+        //Get Product By Id 
         [HttpGet]
         public JsonResult GetProduct(int id)
         {

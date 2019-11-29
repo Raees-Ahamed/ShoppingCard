@@ -23,7 +23,6 @@ D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Data\bin\Debug\netcoreapp3.
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Data\bin\Debug\netcoreapp3.0\ShoppingCard.Data.runtimeconfig.dev.json
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Data\bin\Debug\netcoreapp3.0\ShoppingCard.Data.dll
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Data\bin\Debug\netcoreapp3.0\ShoppingCard.Data.pdb
-D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Data\obj\Debug\netcoreapp3.0\ShoppingCard.Data.csprojAssemblyReference.cache
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Data\obj\Debug\netcoreapp3.0\ShoppingCard.Data.AssemblyInfoInputs.cache
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Data\obj\Debug\netcoreapp3.0\ShoppingCard.Data.AssemblyInfo.cs
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Data\obj\Debug\netcoreapp3.0\ShoppingCard.Data.dll

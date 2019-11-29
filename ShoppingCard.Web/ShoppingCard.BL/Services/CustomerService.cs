@@ -4,28 +4,26 @@ using ShoppingCard.Data.ShoppingCardContext;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using ShoppingCard.BL.BO;
+using ShoppingCart.Data.Repository.RespositoryInterface;
+using AutoMapper;
 
 namespace ShoppingCard.BL.Services
 {
     public class CustomerService : ICustomerService
     {
-        private readonly ShoppingCardDbContext db;
+        private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
 
-        public CustomerService(ShoppingCardDbContext db)
+        public CustomerService(IUnitOfWork unitOfWork,IMapper mapper )
         {
-            this.db = db;
+            this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
-
-        public IEnumerable<Customer> GetAll()
+        public IEnumerable<CustomerBO> GetAllCustomers()
         {
-            try
-            {
-                return from r in db.Customers orderby r.Id select r;
-            }
-            catch (System.Exception ex)
-            {
-                throw new System.Exception(ex.Message);
-            }
+            var query= unitOfWork.CustomerRepository.Get().ToList();
+            return mapper.Map<IEnumerable<CustomerBO>>(query);
         }
     }
 }

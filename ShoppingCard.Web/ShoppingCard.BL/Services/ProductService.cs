@@ -1,45 +1,35 @@
 ﻿using ShoppingCard.BL.Interfaces;
-using ShoppingCard.Data.Entity;
-using ShoppingCard.Data.ShoppingCardContext;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using ShoppingCard.BL.BO;
+using ShoppingCart.Data.Repository.Respositories;
+using AutoMapper;
+using ShoppingCart.Data.Repository.RespositoryInterface;
 
 namespace ShoppingCard.BL.Services
 {
     public class ProductService : IProductService
     {
-        private readonly ShoppingCardDbContext db;
+        private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
 
-        public ProductService(ShoppingCardDbContext db)
+        public ProductService(IUnitOfWork unitOfWork,IMapper mapper)
         {
-            this.db = db;
-        }
-        public IEnumerable<Product> GetAll()
-        {
-            try
-            {
-                return from r in db.Products orderby r.Id select r;
-            }
-            catch (System.Exception ex)
-            {
-
-                throw new System.Exception(ex.Message);
-            }
-           
+            this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
 
-        public Product GetProductById(int id)
+        public IEnumerable<ProductBO> GetAll()
         {
-            try
-            {
-                return db.Products.Find(id);
-            }
-            catch (System.Exception ex)
-            {
+            var query = unitOfWork.ProductRepository.Get();
+            return mapper.Map<IEnumerable<ProductBO>>(query);
+        }
 
-                throw new System.Exception(ex.Message);
-            }
+        public ProductBO GetProductById(int id)
+        {
+            var query = unitOfWork.ProductRepository.GetByID(id);
+            return mapper.Map<ProductBO>(query);
         }
     }
 }

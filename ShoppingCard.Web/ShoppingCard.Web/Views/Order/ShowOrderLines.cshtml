@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShoppingCard.Data.Entity.OrderItem>
+﻿@model IEnumerable<ShoppingCard.Web.Models.OrderLineViewModel>
 @{
     ViewData["Title"] = "ShowOrderLines";
 }
@@ -20,12 +20,12 @@
             {
         <tr>
             <td>@Items.Id</td>
-            <td>@Items.ProductId</td>
+            <td>@Items.Products.Name</td>
             <td>@Items.Price</td>
             <td>@Items.Qty</td>
             <td>@Items.OrderId</td>
-            <td><a class="btn btn-success" asp-controller="OrderLine" asp-action="EditOrderLine" asp-route-id="@Items.Id">Edit</a></td>
-            <td><a class="btn btn-danger" asp-controller="OrderLine" asp-action="DeleteOrderLine" asp-route-id="@Items.Id">Delete</a></td>
+            <td><a class="btn btn-success" asp-controller="Order" asp-action="EditOrderLine" asp-route-id="@Items.Id">Edit</a></td>
+            <td><a class="btn btn-danger" asp-controller="Order" asp-action="DeleteOrderLine" asp-route-id="@Items.Id">Delete</a></td>
             <td><a class="btn btn-primary" asp-controller="Order" asp-action="GetOrdersById" asp-route-id="@Items.OrderId" >Go to Order</a></td>
         </tr>
             }

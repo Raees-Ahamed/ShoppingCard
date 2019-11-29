@@ -1,11 +1,11 @@
 ﻿
-
 var productName;
 var description;
 var unitPrice;
 var qty;
 
 //Add Order Line Items to the table
+
 function AddItems() {
     var table = document.getElementById("orderTable");
      productName = document.getElementById("productId").value;
@@ -34,7 +34,6 @@ function AddItems() {
     productQty.setAttribute("class", "form-control");
     productQty.setAttribute("min", "0");
     
-
     var btn = document.createElement("input");
     btn.setAttribute("type", "button");
     btn.setAttribute("class", "btn btn-danger");
@@ -73,22 +72,20 @@ function AddOrderLine() {
     orderLine = {
         ProductId: 0,
         Description: null,
-        UnitPrice: 0,
-        Quantity: 0,
+        Price: 0,
+        Qty: 0,
         OrderId: 0
     };
 
     orderLine.ProductId = parseInt(productName);
     orderLine.Description = description;
-    orderLine.UnitPrice = parseInt(unitPrice);
-    orderLine.Quantity = parseInt(qty);
+    orderLine.Price = parseInt(unitPrice);
+    orderLine.Qty = parseInt(qty);
     orderLine.OrderId = 0;
 
     products.push(orderLine);
 
     console.log(products);
-
-    
 }
 //AddOrder
 function confirmOrder() {
@@ -98,7 +95,6 @@ function confirmOrder() {
 
     var d = new Date();
     var currentDate = JSON.stringify(d);
-    
 
     var orders = {
         OrderDate: currentDate.replace(/^"(.*)"$/, '$1'),
@@ -110,7 +106,7 @@ function confirmOrder() {
 
     http.open("POST", "../Order/Addorder", true);
     http.setRequestHeader("Content-Type", "application/json");
-    http.send(JSON.stringify(orders));1
+    http.send(JSON.stringify(orders));
     location.replace("../Order/GetAllOrders");
 }
 //Edit Order
@@ -126,8 +122,8 @@ function EditOrder() {
     var orderLine = {
         Id: parseInt(orderLineId),
         ProductId: parseInt(productId),
-        UnitPrice: parseInt(price),
-        Quantity: parseInt(quantity),
+        Price: parseInt(price),
+        Qty: parseInt(quantity),
         OrderId: parseInt(orderId)
     };
 
@@ -137,4 +133,5 @@ function EditOrder() {
     http2.setRequestHeader("Content-Type","application/json");
     http2.send(JSON.stringify(orderLine));
     alert("Updated Successfully");
+    location.replace("../ShowOrderLines");
 }
