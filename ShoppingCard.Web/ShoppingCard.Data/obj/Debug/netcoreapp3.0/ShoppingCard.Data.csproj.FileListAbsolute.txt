@@ -27,3 +27,4 @@ D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Data\obj\Debug\netcoreapp3.
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Data\obj\Debug\netcoreapp3.0\ShoppingCard.Data.AssemblyInfo.cs
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Data\obj\Debug\netcoreapp3.0\ShoppingCard.Data.dll
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Data\obj\Debug\netcoreapp3.0\ShoppingCard.Data.pdb
+D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Data\obj\Debug\netcoreapp3.0\ShoppingCard.Data.csprojAssemblyReference.cache

@@ -21,7 +21,8 @@ namespace ShoppingCard.Web.AutoMapper
             CreateMap<Order, OrderBO>().ReverseMap();
             CreateMap<OrderItemBO, OrderItem>().ReverseMap();
             CreateMap<OrderBO, OrderItemBO>().ReverseMap();
-
+            CreateMap<IEnumerable<OrderBO>, OrderViewModel>().ReverseMap();
+            
             CreateMap<OrderViewModel, OrderBO>().ReverseMap();
            
             CreateMap<ProductViewModel, ProductBO>().ReverseMap();

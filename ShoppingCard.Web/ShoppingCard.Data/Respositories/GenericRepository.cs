@@ -28,8 +28,7 @@ namespace ShoppingCart.Data.Repository.Respositories
         }
 
         public void Delete(TEntity entityToDelete)
-        {   
-          
+        {             
             dbSet.Remove(entityToDelete);
         }
 

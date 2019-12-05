@@ -307,10 +307,7 @@ D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\ShoppingCard.Web.RazorCoreGenerate.cache
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\Razor\Views\Home\Index.cshtml.g.cs
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\Razor\Views\Home\Privacy.cshtml.g.cs
-D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\Razor\Views\Order\AddOrder.cshtml.g.cs
-D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\Razor\Views\Order\EditOrderLine.cshtml.g.cs
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\Razor\Views\Order\GetAllOrders.cshtml.g.cs
-D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\Razor\Views\Order\GetOrdersById.cshtml.g.cs
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\Razor\Views\Order\ShowOrderLines.cshtml.g.cs
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\Razor\Views\Shared\Error.cshtml.g.cs
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Layout.cshtml.g.cs
@@ -323,3 +320,4 @@ D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\ShoppingCard.Web.csproj.CopyComplete
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\ShoppingCard.Web.dll
 D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\ShoppingCard.Web.pdb
+D:\Inexis\ShoppingCard\ShoppingCard.Web\ShoppingCard.Web\obj\Debug\netcoreapp3.0\Razor\Views\Order\CreateOrder.cshtml.g.cs

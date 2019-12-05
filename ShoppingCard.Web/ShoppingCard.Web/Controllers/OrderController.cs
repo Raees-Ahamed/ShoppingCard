@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using ShoppingCard.BL.BO;
 using ShoppingCard.BL.Interfaces;
 using ShoppingCard.Data.Entity;
@@ -19,7 +20,7 @@ namespace ShoppingCard.Web.Controllers
         private readonly IOrderServices orderService;
         private readonly IMapper mapper;
 
-        public OrderController(IProductService productService,ICustomerService customerService,IOrderServices orderService,IMapper mapper)
+        public OrderController(IProductService productService,ICustomerService customerService,IOrderServices orderService,IMapper mapper) 
         {
             this.productService = productService;
             this.customerService = customerService;
@@ -29,7 +30,7 @@ namespace ShoppingCard.Web.Controllers
 
         //Show All Orders
         [HttpGet]
-        public IActionResult AddOrder()
+        public IActionResult CreateOrder()        
         {
             var customers = customerService.GetAllCustomers().ToList();
             var products = productService.GetAll().ToList();
@@ -38,77 +39,47 @@ namespace ShoppingCard.Web.Controllers
             ViewBag.listOfCustomers = customers;
             return View();
         }
-
+   
         //Add New Order
         [HttpPost]
-        public ActionResult Addorder([FromBody]OrderViewModel orderViewModel)
+        public ActionResult CreateOrder([FromBody]OrderViewModel orderViewModel)          
         {
             var order = mapper.Map<OrderBO>(orderViewModel);
-            var OrderId = orderService.AddOrder(order);           
+            orderService.CreateOrder(order);           
             return RedirectToAction("GetAllOrders","Order");
         }
 
-        //Display All Order 
-        [HttpGet]
-        public IActionResult GetAllOrders() {
-            var modal = mapper.Map<IEnumerable<OrderViewModel>>(orderService.GetOrders());
-
-            return View(modal);
-        }
-
-        //When user clicks Go to order in orderline user interface it shows orders for that appropriate order items
-        [HttpGet]
-        public IActionResult GetOrdersById(int id) {
-            var orderbyId = orderService.GetOrdersById(id);
-            var lines = mapper.Map<OrderViewModel>(orderbyId);
-            return View(lines);
+        [HttpPost]
+        public IActionResult ChangeOrder([FromBody]OrderViewModel orderViewModel)
+        {
+            var order = mapper.Map<OrderBO>(orderViewModel);
+            orderService.ChangeOrder(order);
+            return RedirectToAction("GetAllOrders", "Order");
         }
 
         //Delete order 
-        public IActionResult DeleteOrders(int id) {
+        public IActionResult RemoveOrders(int id)
+        {
             orderService.DeleteOrder(id);
-            return RedirectToAction("GetAllOrders","Order");
+            return RedirectToAction("GetAllOrders", "Order");
         }
 
+
+        //Display All Order 
+        [HttpGet]
+        public IActionResult GetAllOrders()
+        {
+            var modal = mapper.Map<IEnumerable<OrderViewModel>>(orderService.GetOrders());
+            return View(modal);
+        }
+             
         //Display All Order Items in Order
         public IActionResult ShowOrderLines(int id)
         {
-            var linesBO= orderService.GetOrderItemById(id);
-            var lines = mapper.Map<IEnumerable<OrderLineViewModel>>(linesBO);
+            ViewBag.Products = productService.GetAll().ToList();
+            var linesBO = orderService.GetOrdersById(id);   
+            var lines = mapper.Map<OrderViewModel>(linesBO);
             return View(lines);
-        }
-
-        //Getting neccessary details to edit orders
-        [HttpGet]
-        public IActionResult EditOrderLine(int id)
-        {
-            var orderItem = orderService.GetEditItems(id);
-            ViewBag.AllProduct = productService.GetAll().ToList();
-            var lines = mapper.Map<OrderLineViewModel>(orderItem);
-            return View(lines);
-        }
-
-        //Edit Order items in order
-        [HttpPost]
-        public IActionResult EditOrderLine([FromBody] OrderLineViewModel OrderLines)
-        {
-            var lines = new OrderItemBO()
-            {
-                Id = OrderLines.Id,
-                ProductId = OrderLines.ProductId,
-                Qty = OrderLines.Qty,
-                Price = Convert.ToInt32(OrderLines.Price),
-                OrderId = OrderLines.OrderId
-            };
-            orderService.Edit(lines);
-            return RedirectToAction("ShowOrderLines", "Order");
-        }
-
-        //Delete Order Items in order        
-        public IActionResult DeleteOrderLine(int id)
-        {
-            orderService.DeleteOrderLine(id);
-            return RedirectToAction("ShowOrderLines", "Order");
         }
     }
 }

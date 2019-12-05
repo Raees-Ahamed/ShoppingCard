@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "AddOrder";
+    ViewData["Title"] = "CreateOrder";
 }
 
 <h1 align="center">AddOrder</h1>
@@ -23,19 +23,22 @@
                 <th></th>
             </tr>
             <tr>
-                <td><select onchange="LoadProduct(this.value) " id="productId" asp-items="@(new SelectList(ViewBag.listOfProducts,"Id","Name"))" class="form-control"></select></td>
+                <td><select onchange="LoadProduct(this.value,null) " id="productId" asp-items="@(new SelectList(ViewBag.listOfProducts,"Id","Name"))" class="form-control"></select></td>
                 <td><input type="text" id="description" class="form-control" disabled /></td>
                 <td><input type="text" id="unitPrice" class="form-control" disabled /></td>
-                <td><input type="number" id="qty" class="form-control" min="1"/></td>
+                <td><input type="number" id="qty" class="form-control" min="1" /></td>
                 <td><button onclick="AddItems()" class="btn btn-danger">Add To Order</button></td>
             </tr>
         </table>
     </div>
-</div><br /><br />
-<h2 align="center">Ordered Items</h2><br />
+</div>
+<br />
+<br />
+<h2 align="center">Ordered Items</h2>
+<br />
 <div class="container-fluid">
     <div class="form-group">
-        <table id="orderTable"class="table table-dark">
+        <table id="orderTable" class="table table-dark">
             <tr class="thead-dark">
                 <th>Product Name</th>
                 <th>Description</th>
@@ -47,7 +50,8 @@
                 <td></td>
             </tr>
             <tr>
-                <td><button class="btn btn-danger" onclick="confirmOrder()">Confirm Order</button></tr>
+                <td><button class="btn btn-danger" onclick="confirmOrder()">Confirm Order</button>
+            </tr>
         </table>
     </div>
 </div>

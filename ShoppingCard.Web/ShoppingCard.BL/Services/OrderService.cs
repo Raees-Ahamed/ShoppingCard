@@ -16,29 +16,19 @@ namespace ShoppingCard.BL.Services
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
-        private readonly ProductService productService;
-
+       
         public OrderService(IUnitOfWork unitOfWork,IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
-            productService = new ProductService(unitOfWork, mapper);
         }
 
-        public int AddOrder(OrderBO orderBO)
+        public int CreateOrder(OrderBO orderBO)
         {
             var order = mapper.Map<Order>(orderBO);
             unitOfWork.OrderRepository.Create(order);
             unitOfWork.Save();
-            return orderBO.Id;
-            
-        }
-
-        public void AddOrderItems(OrderItemBO orderItemBO)
-        {
-            var orderItems = mapper.Map<OrderItem>(orderItemBO);
-            unitOfWork.OrderItemRepository.Create(orderItems);
-            unitOfWork.Save();
+            return orderBO.Id;            
         }
 
         public void DeleteOrder(int Id)
@@ -49,37 +39,29 @@ namespace ShoppingCard.BL.Services
             unitOfWork.Save();
         }
 
-        public void DeleteOrderLine(int id)
+        private void DeleteOrderLine(int id)
         {
-            var orderItemBO= unitOfWork.OrderItemRepository.GetByID(id);
+            var orderItemBO = unitOfWork.OrderItemRepository.GetByID(id);
             var DeleteLine = mapper.Map<OrderItem>(orderItemBO);
             unitOfWork.OrderItemRepository.Delete(DeleteLine);
             unitOfWork.Save();
         }
 
-        public void Edit(OrderItemBO EditedItems)
+        public void ChangeOrder(OrderBO orderBO)
         {
-            var OrderItemEdit = mapper.Map<OrderItem>(EditedItems);
-            unitOfWork.OrderItemRepository.Update(OrderItemEdit);
-            unitOfWork.Save();
-        }
-
-        public OrderItemBO GetEditItems(int id)
-        {
-            var OrderItems = unitOfWork.OrderItemRepository.GetByID(id);
-            return mapper.Map<OrderItemBO>(OrderItems);
-        }
-
-        public IEnumerable<OrderItemBO> GetOrderItemById(int id)
-        {
-            var OrderItems = unitOfWork.OrderItemRepository.Get(o => o.OrderId == id, includeProperties:"Products");
-            return mapper.Map<IEnumerable<OrderItemBO>>(OrderItems);
-        }
-
-        public IEnumerable<OrderItemBO> GetOrderItems()
-        {
-            var query = unitOfWork.OrderItemRepository.Get();
-            return mapper.Map<IEnumerable<OrderItemBO>>(query);
+            foreach(var items in orderBO.OrderItems)
+            {
+                if (items.IsDelete)
+                {
+                    DeleteOrderLine(items.Id);         
+                } 
+                else
+                {
+                    var orderItem = mapper.Map<OrderItem>(items);
+                    unitOfWork.OrderItemRepository.Update(orderItem);
+                    unitOfWork.Save();
+                }
+            }
         }
 
         public IEnumerable<OrderBO> GetOrders()
@@ -90,10 +72,8 @@ namespace ShoppingCard.BL.Services
 
         public OrderBO GetOrdersById(int id)
         {
-            var Orders = unitOfWork.OrderRepository.GetByID(id);
+            var Orders = unitOfWork.OrderRepository.Get(includeProperties:"OrderItems").FirstOrDefault(o => o.Id == id);
             return mapper.Map<OrderBO>(Orders);
-        }
-
-      
+        }     
     }
 }

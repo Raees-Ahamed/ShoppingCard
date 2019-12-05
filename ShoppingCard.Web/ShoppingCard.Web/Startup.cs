@@ -75,7 +75,7 @@ namespace ShoppingCard.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Order}/{action=AddOrder}/{id?}");
+                    pattern: "{controller=Order}/{action=CreateOrder}/{id?}");
             });
         }
     }

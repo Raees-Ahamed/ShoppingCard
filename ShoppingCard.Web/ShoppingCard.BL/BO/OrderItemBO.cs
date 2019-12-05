@@ -16,5 +16,6 @@ namespace ShoppingCard.BL.BO
         public ProductBO Products { get; set; }
 
         public int OrderId { get; set; }
+        public bool IsDelete { get; set; }
     }
 }

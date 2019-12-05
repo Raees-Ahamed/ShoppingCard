@@ -3,6 +3,8 @@ var productName;
 var description;
 var unitPrice;
 var qty;
+var Items = [];
+
 
 //Add Order Line Items to the table
 
@@ -65,16 +67,15 @@ function AddItems() {
 
 //Create OrderLine
 
-var products = [];
-var orderLine;
 function AddOrderLine() {
     
-    orderLine = {
+    var orderLine = {
         ProductId: 0,
         Description: null,
         Price: 0,
         Qty: 0,
-        OrderId: 0
+        OrderId: 0,
+        IsDelete:false
     };
 
     orderLine.ProductId = parseInt(productName);
@@ -83,9 +84,7 @@ function AddOrderLine() {
     orderLine.Qty = parseInt(qty);
     orderLine.OrderId = 0;
 
-    products.push(orderLine);
-
-    console.log(products);
+    Items.push(orderLine);
 }
 //AddOrder
 function confirmOrder() {
@@ -104,34 +103,77 @@ function confirmOrder() {
 
     console.log(JSON.stringify(orders));
 
-    http.open("POST", "../Order/Addorder", true);
+    http.open("POST", "../Order/CreateOrder", true);
     http.setRequestHeader("Content-Type", "application/json");
     http.send(JSON.stringify(orders));
     location.replace("../Order/GetAllOrders");
 }
 //Edit Order
-function EditOrder() {
-    var http2 = new XMLHttpRequest();
+function SetOrder(id) {
 
-    var orderLineId = document.getElementById("orderLineId").value;
-    var productId = document.getElementById("productId").value;
-    var price = document.getElementById("price").value;
-    var quantity = document.getElementById("quantity").value;
-    var orderId = document.getElementById("orderId").value;
+    var orderLineId = document.getElementById("orderLineId "+id).innerHTML;
+    var productId = document.getElementById("productId "+id).value;
+    var price = document.getElementById("price "+id).value;
+    var quantity = document.getElementById("qty "+id).value;
+    var orderId = document.getElementById("orderId "+id).innerHTML;
 
-    var orderLine = {
+    var orderItems = {
         Id: parseInt(orderLineId),
         ProductId: parseInt(productId),
         Price: parseInt(price),
         Qty: parseInt(quantity),
-        OrderId: parseInt(orderId)
+        OrderId: parseInt(orderId),
+        IsDelete:false
     };
 
-    console.log(orderLine);
+    console.log(orderItems);
 
-    http2.open("POST","../EditOrderLine", true);
-    http2.setRequestHeader("Content-Type","application/json");
-    http2.send(JSON.stringify(orderLine));
+    Items.push(orderItems);
+}
+
+
+function RemoveOrder(id) {
+    var orderLineId = document.getElementById("orderLineId " + id).innerHTML;
+    var productId = document.getElementById("subId " + id).innerHTML;
+    console.log(productId);
+    var price = document.getElementById("price " + id).value;
+    var quantity = document.getElementById("qty " + id).value;
+    var orderId = document.getElementById("orderId " + id).innerHTML;
+
+    var RemoveItems = {
+        Id: parseInt(orderLineId),
+        ProductId: parseInt(productId),
+        Price: parseInt(price),
+        Qty: parseInt(quantity),
+        OrderId: parseInt(orderId),
+        IsDelete:true
+    };
+
+    Items.push(RemoveItems);
+}
+
+function EditOrder() {
+
+    var d = new Date();
+    var currentDate = JSON.stringify(d);
+
+    order = {
+        Id:0,
+        CustomerId: 0,
+        Date: null,
+        OrderItems: Items
+    }
+
+    var idvalue = document.getElementById("tempOrderId").innerHTML;
+    order.Id = parseInt(idvalue);
+    RemoveOrder.Id = parseInt(idvalue);
+    order.Date = currentDate.replace(/^"(.*)"$/, '$1');
+    RemoveOrder.Date = currentDate.replace(/^"(.*)"$/, '$1');
+
+    var http2 = new XMLHttpRequest();
+    http2.open("POST","../ChangeOrder", true);
+    http2.setRequestHeader("Content-Type", "application/json");
+    http2.send(JSON.stringify(order));
     alert("Updated Successfully");
-    location.replace("../ShowOrderLines");
+    location.replace("../GetAllOrders");
 }

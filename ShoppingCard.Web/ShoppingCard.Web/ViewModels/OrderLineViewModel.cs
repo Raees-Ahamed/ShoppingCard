@@ -14,5 +14,6 @@ namespace ShoppingCard.Web.Models
         public double Price { get; set; }
         public int Qty { get; set; }
         public int OrderId { get; set; }
+        public bool IsDelete { get; set; }
     }
 }

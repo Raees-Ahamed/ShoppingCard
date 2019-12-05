@@ -1,10 +1,14 @@
-﻿@model IEnumerable<ShoppingCard.Web.Models.OrderLineViewModel>
+﻿@model ShoppingCard.Web.Models.OrderViewModel
 @{
     ViewData["Title"] = "ShowOrderLines";
 }
 
 <h1 align="center">Ordered Items</h1>
-
+<div class="container-fluid">
+    <div class="form-group">
+        <button type="button" class="btn btn-outline-info" onclick="EditOrder()">Save changes</button>
+    </div>
+</div>
 <div class="container-fluid">
     <div class="form-group">
         <table class="table table-dark">
@@ -15,23 +19,26 @@
                 <th>Quantity</th>
                 <th>Order Id</th>
             </tr>
-
-            @foreach(var Items in Model)
+            @foreach (var Items in Model.OrderItems)
             {
-        <tr>
-            <td>@Items.Id</td>
-            <td>@Items.Products.Name</td>
-            <td>@Items.Price</td>
-            <td>@Items.Qty</td>
-            <td>@Items.OrderId</td>
-            <td><a class="btn btn-success" asp-controller="Order" asp-action="EditOrderLine" asp-route-id="@Items.Id">Edit</a></td>
-            <td><a class="btn btn-danger" asp-controller="Order" asp-action="DeleteOrderLine" asp-route-id="@Items.Id">Delete</a></td>
-            <td><a class="btn btn-primary" asp-controller="Order" asp-action="GetOrdersById" asp-route-id="@Items.OrderId" >Go to Order</a></td>
-        </tr>
+                <tr>
+                    <td id="orderLineId @Items.Id">@Items.Id</td>
+                    <td>
+                        <p id="tempOrderId" hidden>@Items.OrderId</p>
+                        <select onchange="LoadProductEdit(this.value,@Items.Id) " id="productId @Items.Id" asp-items="@(new SelectList(ViewBag.Products,"Id","Name"))" class="form-control">
+                            <option>@Items.Products.Name</option>
+                        </select>
+                    </td>
+                    <td>  <p id="subId @Items.Id" hidden>@Items.ProductId</p><input type="text" value="@Items.Price" class="form-control" id="price @Items.Id" /></td>
+                    <td><input type="number" class="form-control" value="@Items.Qty" id="qty @Items.Id" /></td>
+                    <td id="orderId @Items.Id">@Items.OrderId</td>
+                    <td><a class="btn btn-success" onclick="SetOrder(@Items.Id)" id="btnEdit @Items.Id">Edit</a></td>
+                    <td><a class="btn btn-danger" onclick="RemoveOrder(@Items.Id)">Delete</a></td>
+                </tr>
             }
         </table>
     </div>
 </div>
-
-
+<script src="~/JavaScript/LoadProduct.js"></script>
+<script src="~/JavaScript/Order.js"></script>
 
