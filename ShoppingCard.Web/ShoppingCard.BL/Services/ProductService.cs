@@ -6,6 +6,7 @@ using ShoppingCard.BL.BO;
 using ShoppingCart.Data.Repository.Respositories;
 using AutoMapper;
 using ShoppingCart.Data.Repository.RespositoryInterface;
+using ShoppingCard.Data.Entity;
 
 namespace ShoppingCard.BL.Services
 {
@@ -31,5 +32,20 @@ namespace ShoppingCard.BL.Services
             var query = unitOfWork.ProductRepository.GetByID(id);
             return mapper.Map<ProductBO>(query);
         }
-    }
+        public void Update(int productId, int quantity)
+        {
+                var productBO = unitOfWork.ProductRepository.GetByID(productId);
+
+               
+                    productBO.QtyInHand = productBO.QtyInHand + quantity;
+                
+               
+
+                var product = mapper.Map<Product>(productBO);
+                unitOfWork.ProductRepository.Update(product);
+                unitOfWork.Save();
+         }
+          
+     }
 }
+

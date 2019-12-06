@@ -98,7 +98,7 @@ function confirmOrder() {
     var orders = {
         OrderDate: currentDate.replace(/^"(.*)"$/, '$1'),
         CustomerId: parseInt(Customer),
-        OrderItems: products
+        OrderItems: Items
     };
 
     console.log(JSON.stringify(orders));

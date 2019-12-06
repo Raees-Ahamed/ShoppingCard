@@ -10,5 +10,6 @@ namespace ShoppingCard.BL.Interfaces
     {
         IEnumerable<ProductBO> GetAll();
         ProductBO GetProductById(int id);
+        public void Update(int productId, int quantity);
     }
 }
