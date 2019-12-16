@@ -21,7 +21,7 @@ namespace ShoppingCard.BL.Services
             this.mapper = mapper;
         }
 
-        public IEnumerable<ProductBO> GetAll()
+        public IEnumerable<ProductBO> GetAllProducts()
         {
             var query = unitOfWork.ProductRepository.Get();
             return mapper.Map<IEnumerable<ProductBO>>(query);

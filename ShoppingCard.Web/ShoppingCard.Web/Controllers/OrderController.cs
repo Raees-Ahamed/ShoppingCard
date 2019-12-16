@@ -33,7 +33,7 @@ namespace ShoppingCard.Web.Controllers
         public IActionResult CreateOrder()        
         {
             var customers = customerService.GetAllCustomers().ToList();
-            var products = productService.GetAll().ToList();
+            var products = productService.GetAllProducts().ToList();
 
             ViewBag.listOfProducts = products;
             ViewBag.listOfCustomers = customers;
@@ -76,7 +76,7 @@ namespace ShoppingCard.Web.Controllers
         //Display All Order Items in Order
         public IActionResult ShowOrderLines(int id)
         {
-            ViewBag.Products = productService.GetAll().ToList();
+            ViewBag.Products = productService.GetAllProducts().ToList();
             var linesBO = orderService.GetOrdersById(id);   
             var lines = mapper.Map<OrderViewModel>(linesBO);
             return View(lines);

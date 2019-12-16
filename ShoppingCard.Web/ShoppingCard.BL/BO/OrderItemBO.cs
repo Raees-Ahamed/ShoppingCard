@@ -13,9 +13,11 @@ namespace ShoppingCard.BL.BO
         public int Price { get; set; }
 
         public int ProductId { get; set; }
+
         public ProductBO Products { get; set; }
 
         public int OrderId { get; set; }
+
         public bool IsDelete { get; set; }
     }
 }

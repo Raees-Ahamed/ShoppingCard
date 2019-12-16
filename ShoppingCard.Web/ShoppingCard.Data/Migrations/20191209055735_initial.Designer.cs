@@ -10,8 +10,8 @@ using ShoppingCard.Data.ShoppingCardContext;
 namespace ShoppingCard.Data.Migrations
 {
     [DbContext(typeof(ShoppingCardDbContext))]
-    [Migration("20191119051553_init")]
-    partial class init
+    [Migration("20191209055735_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -139,12 +139,12 @@ namespace ShoppingCard.Data.Migrations
             modelBuilder.Entity("ShoppingCard.Data.Entity.OrderItem", b =>
                 {
                     b.HasOne("ShoppingCard.Data.Entity.Order", "Orders")
-                        .WithMany()
+                        .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ShoppingCard.Data.Entity.Product", "Product")
+                    b.HasOne("ShoppingCard.Data.Entity.Product", "Products")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)

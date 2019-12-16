@@ -137,12 +137,12 @@ namespace ShoppingCard.Data.Migrations
             modelBuilder.Entity("ShoppingCard.Data.Entity.OrderItem", b =>
                 {
                     b.HasOne("ShoppingCard.Data.Entity.Order", "Orders")
-                        .WithMany()
+                        .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ShoppingCard.Data.Entity.Product", "Product")
+                    b.HasOne("ShoppingCard.Data.Entity.Product", "Products")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -10,8 +10,7 @@ function LoadProduct(id) {
 
             if (obj != null) {
                 document.getElementById("description").value = obj.description;
-                document.getElementById("unitPrice").value = obj.unitPrice;
-                
+                document.getElementById("unitPrice").value = obj.unitPrice;                
             }
             else {
                 document.getElementById("description").value = "Not Found";

@@ -18,7 +18,7 @@ namespace ShoppingCard.BL.Services
         private readonly IMapper mapper;
         private readonly IProductService productService;
 
-        public OrderService(IUnitOfWork unitOfWork,IMapper mapper,IProductService productService)
+        public OrderService(IUnitOfWork unitOfWork, IMapper mapper, IProductService productService)
         {
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
@@ -26,18 +26,17 @@ namespace ShoppingCard.BL.Services
         }
 
         public int CreateOrder(OrderBO orderBO)
-        {      
-           
-                foreach (var item in orderBO.OrderItems)
-                {
-                    //Updating the product
-                    productService.Update(item.ProductId, -(item.Qty));
-                }
+        {
 
-                var order = mapper.Map<Order>(orderBO);
-                //This method will add orderlines as well, since this entity has the orderline list
-                unitOfWork.OrderRepository.Create(order);
-                unitOfWork.Save();
+            foreach (var item in orderBO.OrderItems)
+            {
+                productService.Update(item.ProductId, -(item.Qty));
+            }
+
+            var order = mapper.Map<Order>(orderBO);
+
+            unitOfWork.OrderRepository.Create(order);
+            unitOfWork.Save();
 
             return orderBO.Id;
 
@@ -61,25 +60,23 @@ namespace ShoppingCard.BL.Services
 
         public void ChangeOrder(OrderBO orderBO)
         {
-       
+            var tempOrder = unitOfWork.OrderRepository.Get(includeProperties: "OrderItems").FirstOrDefault(o => o.Id == orderBO.Id);
 
             foreach (var items in orderBO.OrderItems)
             {
-                var tempOrderLine = unitOfWork.OrderItemRepository.GetByID(items.Id);
+                var tempOrderLine = tempOrder.OrderItems.FirstOrDefault(f => f.Id == items.Id);
+
                 var tempDifference = tempOrderLine.Qty - items.Qty;
                 tempOrderLine.Qty = items.Qty;
                 if (items.IsDelete)
-                    {
-                        DeleteOrderLine(items.Id);         
-                    } 
-                    else
-                    {
-                        var orderItem = mapper.Map<OrderItem>(items);
-                        unitOfWork.OrderItemRepository.Update(orderItem);
-                        unitOfWork.Save();
-                    }
+                {
+                    DeleteOrderLine(items.Id);
+                }
                 productService.Update(items.ProductId, tempDifference);
-            }         
+            }
+
+            unitOfWork.OrderRepository.Update(tempOrder);
+            unitOfWork.Save();
         }
 
         public IEnumerable<OrderBO> GetOrders()
@@ -92,6 +89,6 @@ namespace ShoppingCard.BL.Services
         {
             var Orders = unitOfWork.OrderRepository.Get(includeProperties:"OrderItems").FirstOrDefault(o => o.Id == id);
             return mapper.Map<OrderBO>(Orders);
-        }     
+        }
     }
 }

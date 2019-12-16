@@ -8,7 +8,7 @@ namespace ShoppingCard.BL.Interfaces
 {
     public interface IProductService
     {
-        IEnumerable<ProductBO> GetAll();
+        IEnumerable<ProductBO> GetAllProducts();
         ProductBO GetProductById(int id);
         public void Update(int productId, int quantity);
     }
